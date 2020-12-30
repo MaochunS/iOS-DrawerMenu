@@ -8,15 +8,22 @@
 
 import UIKit
 
+protocol ViewWithDrawerMenuViewDelegate {
+
+    func didSelectMenuItem(idx:Int)
+}
+
 class ViewWithDrawerMenuView: UIView {
-    
     
     lazy var drawerMenu : DrawerMenuView = {
         let theView = DrawerMenuView()
         theView.translatesAutoresizingMaskIntoConstraints = false
         
-        theView.onSelectMenuItemBlock = {() -> Void in
+        theView.onSelectMenuItemBlock = {(idx) -> Void in
+            //print("select menu item \(idx)")
+            
             self.onMenuAction()
+            self.delegate?.didSelectMenuItem(idx: idx)
         }
         
         self.addSubview(theView)
@@ -85,6 +92,7 @@ class ViewWithDrawerMenuView: UIView {
     
     var menuShow = false
     var type = 0
+    var delegate : ViewWithDrawerMenuViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

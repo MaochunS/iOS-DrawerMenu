@@ -27,9 +27,14 @@ class ViewController: UIViewController {
         
     }()
     
+    let vc1 = Test1ViewController()
+    let vc2 = Test2ViewController()
+    
     
     override func loadView() {
-        self.view = ViewWithDrawerMenuView()
+        let drawerMenuView = ViewWithDrawerMenuView()
+        drawerMenuView.delegate = self
+        self.view = drawerMenuView
     }
     
 
@@ -39,14 +44,28 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .gray
         
+       
         let _ = self.testButton
         
     }
     
     
-    
+}
+
+extension ViewController: ViewWithDrawerMenuViewDelegate{
+    func didSelectMenuItem(idx: Int) {
+        print("select menu \(idx) " + MenuModel.shared.getItemTitle(idx: idx))
+        
+        switch idx {
+        case 0:
+            self.present(vc1, animated: true, completion: nil)
+        case 1:
+            self.present(vc2, animated: true, completion: nil)
+        default:
+            self.present(vc1, animated: true, completion: nil)
+        }
+    }
     
     
 }
-
 

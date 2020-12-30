@@ -49,15 +49,10 @@ class DrawerMenuView: UIView {
         
         //tableView.allowsMultipleSelection = true
         //tableView.roundCorners(.allCorners, radius: 2.0)
-        
-        
-    
-        
         //tableView.layer.borderColor = UIColor(red: 0.22, green: 0.8, blue: 0.85, alpha: 1).cgColor
         //tableView.layer.borderWidth = 1
         //tableView.layer.masksToBounds = true
         //tableView.round(corners: [.bottomLeft, .bottomRight], radius: 5)
-
         //tableView.isHidden = true
         
         self.addSubview(tableView)
@@ -83,7 +78,7 @@ class DrawerMenuView: UIView {
     var selectedCellColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
     var selectedIdx : IndexPath?
     
-    var onSelectMenuItemBlock : (() -> Void)?
+    var onSelectMenuItemBlock : ((Int) -> Void)?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -146,7 +141,7 @@ extension DrawerMenuView: UITableViewDelegate, UITableViewDataSource {
      
         self.selectedIdx = indexPath
         
-        self.onSelectMenuItemBlock?()
+        self.onSelectMenuItemBlock?(indexPath.row)
     
     }
     
