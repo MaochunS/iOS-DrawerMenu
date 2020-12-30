@@ -16,6 +16,8 @@
 		2EA8F34124CEB46000AD4886 /* DrawMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8F34024CEB46000AD4886 /* DrawMenuTests.swift */; };
 		2EA8F34C24CEB46100AD4886 /* DrawMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8F34B24CEB46100AD4886 /* DrawMenuUITests.swift */; };
 		2EA8F35A24CEB48700AD4886 /* DrawerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8F35924CEB48700AD4886 /* DrawerMenuView.swift */; };
+		2ECA383A259C53B100EB14FD /* ViewWithDrawerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA3839259C53B100EB14FD /* ViewWithDrawerMenuView.swift */; };
+		2ECA3846259C713500EB14FD /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA3845259C713500EB14FD /* MenuModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		2EA8F34B24CEB46100AD4886 /* DrawMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawMenuUITests.swift; sourceTree = "<group>"; };
 		2EA8F34D24CEB46100AD4886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EA8F35924CEB48700AD4886 /* DrawerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuView.swift; sourceTree = "<group>"; };
+		2ECA3839259C53B100EB14FD /* ViewWithDrawerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithDrawerMenuView.swift; sourceTree = "<group>"; };
+		2ECA3845259C713500EB14FD /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				2EA8F33424CEB46000AD4886 /* LaunchScreen.storyboard */,
 				2EA8F33724CEB46000AD4886 /* Info.plist */,
 				2EA8F35924CEB48700AD4886 /* DrawerMenuView.swift */,
+				2ECA3839259C53B100EB14FD /* ViewWithDrawerMenuView.swift */,
+				2ECA3845259C713500EB14FD /* MenuModel.swift */,
 			);
 			path = DrawMenu;
 			sourceTree = "<group>";
@@ -264,6 +270,8 @@
 			files = (
 				2EA8F32E24CEB45F00AD4886 /* ViewController.swift in Sources */,
 				2EA8F32A24CEB45F00AD4886 /* AppDelegate.swift in Sources */,
+				2ECA3846259C713500EB14FD /* MenuModel.swift in Sources */,
+				2ECA383A259C53B100EB14FD /* ViewWithDrawerMenuView.swift in Sources */,
 				2EA8F32C24CEB45F00AD4886 /* SceneDelegate.swift in Sources */,
 				2EA8F35A24CEB48700AD4886 /* DrawerMenuView.swift in Sources */,
 			);

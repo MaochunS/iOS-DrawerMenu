@@ -23,7 +23,7 @@ class DrawerMenuView: UIView {
             theview.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
             theview.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             theview.topAnchor.constraint(equalTo: self.topAnchor, constant:0),
-            theview.heightAnchor.constraint(equalToConstant: 100)
+            theview.heightAnchor.constraint(equalToConstant: 150)
             
         ])
         
@@ -44,6 +44,7 @@ class DrawerMenuView: UIView {
         tableView.tableHeaderView = nil
         //tableView.contentInset = UIEdgeInsets(top: -30, left: 0, bottom: 0, right: 0);
         tableView.separatorStyle = .none
+        tableView.allowsSelection = true
         //tableView.isEditing = true
         
         //tableView.allowsMultipleSelection = true
@@ -77,10 +78,12 @@ class DrawerMenuView: UIView {
         return tableView
     }()
     
-    var items = [String]()
+    var menu = MenuModel.shared
     
     var selectedCellColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-    var selectedIdx = 0
+    var selectedIdx : IndexPath?
+    
+    var onSelectMenuItemBlock : (() -> Void)?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -92,9 +95,6 @@ class DrawerMenuView: UIView {
         let _ = self.titleView
         let _ = self.listTableView
         
-        for i in 0...5{
-            self.items.append("item \(i)")
-        }
     }
     
 }
@@ -105,7 +105,7 @@ extension DrawerMenuView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-        return items.count
+        return self.menu.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,19 +113,19 @@ extension DrawerMenuView: UITableViewDelegate, UITableViewDataSource {
         var cell : UITableViewCell
         cell = tableView.dequeueReusableCell(withIdentifier:"DrawerMenuTableViewCell", for:indexPath)
         
-        cell.textLabel?.text = self.items[indexPath.row]
+        cell.textLabel?.text = self.menu.getItemTitle(idx: indexPath.row)
         cell.textLabel?.textColor = .gray
-        //cell.backgroundColor = .white
+        cell.backgroundColor = .white
 
         
-        if indexPath.row == selectedIdx{
-            cell.backgroundColor = .none //self.selectedCellColor
+        if indexPath == selectedIdx{
+           
             cell.accessoryType = .checkmark
             cell.accessoryView = UIImageView(image: UIImage(named: "list_icon_check"))
         }else{
-            cell.backgroundColor = .none
+         
             cell.accessoryType = .none
-            cell.accessoryView = nil
+            //cell.accessoryView = nil
         }
         
         return cell
@@ -144,18 +144,21 @@ extension DrawerMenuView: UITableViewDelegate, UITableViewDataSource {
         //self.listTableView.removeFromSuperview()
         //self.dropdownListShow = false
      
-        self.selectedIdx = indexPath.row
+        self.selectedIdx = indexPath
+        
+        self.onSelectMenuItemBlock?()
     
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         
-        let idx = IndexPath(row: selectedIdx, section: 0)
+        if let idx = self.selectedIdx{
         
-        tableView.cellForRow(at: idx)?.accessoryType = .none
-        tableView.cellForRow(at: idx)?.accessoryView = nil
-        tableView.cellForRow(at: idx)?.backgroundColor = .white
+            tableView.cellForRow(at: idx)?.accessoryType = .none
+            tableView.cellForRow(at: idx)?.accessoryView = nil
+            tableView.cellForRow(at: idx)?.backgroundColor = .none
+        }
         
         return indexPath
     }
